@@ -255,11 +255,12 @@ DiskMemory DiskVirtualMemoryManager::malloc(size_t size) {
     ::snprintf(mem_file_path, mem_file_path_length,
                "%s/mem_%llu", this->folder_path_global, (unsigned long long) mem_file_id);
     // create the file
-    int fd = ::open(mem_file_path, O_RDWR | O_CREAT | O_TRUNC);
+    int fd = ::open(mem_file_path, O_RDWR | O_CREAT | O_TRUNC, 0600);
     if (fd == -1) {
         ::free(mem_file_path);
         return {nullptr, 0};
     }
+//    ::free(mem_file_path); this line can be deleted: this free is moved to freer.
     // test whether the created file can take enough space
     if (::lseek(fd, (off_t) size - 1, SEEK_SET) == -1 || ::write(fd, "", 1) != 1) {
         ::close(fd);

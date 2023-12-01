@@ -6,8 +6,8 @@ int main() {
     DiskVirtualMemoryManager *dvmm = new DiskVirtualMemoryManager("./mems");
     ::printf("The disk folder can hold %lu new bytes. \n", dvmm->checkDiskFolderCapacity());
 
-    ::printf("Allocating 1 kilobyte as disk file ./mems/mem_0. \n");
-    DiskMemory dm0 = dvmm->malloc(1024);
+    ::printf("Allocating 1 gigabyte as disk file ./mems/mem_0. \n");
+    DiskMemory dm0 = dvmm->malloc(1024 * 1024 * 1024);
 
     printf("Printing hello to disk vm file ./mems/mem_0. \n");
     void *page0 = dm0.pointer();
