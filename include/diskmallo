@@ -260,7 +260,6 @@ DiskMemory DiskVirtualMemoryManager::malloc(size_t size) {
         ::free(mem_file_path);
         return {nullptr, 0};
     }
-//    ::free(mem_file_path); this line can be deleted: this free is moved to freer.
     // test whether the created file can take enough space
     if (::lseek(fd, (off_t) size - 1, SEEK_SET) == -1 || ::write(fd, "", 1) != 1) {
         ::close(fd);
