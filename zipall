@@ -1,0 +1,1 @@
+zip -r zipped_all.zip ./*
