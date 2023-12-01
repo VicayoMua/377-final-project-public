@@ -255,7 +255,7 @@ DiskMemory DiskVirtualMemoryManager::malloc(size_t size) {
     ::snprintf(mem_file_path, mem_file_path_length,
                "%s/mem_%llu", this->folder_path_global, (unsigned long long) mem_file_id);
     // create the file
-    int fd = ::open(mem_file_path, O_RDWR | O_CREAT | O_TRUNC, 0600);
+    int fd = ::open(mem_file_path, O_RDWR | O_CREAT | O_TRUNC);
     if (fd == -1) {
         ::free(mem_file_path);
         return {nullptr, 0};
