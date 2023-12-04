@@ -7,10 +7,12 @@ include_directories(include)
 
 add_executable(
         DiskVirtualMemoryManager
+        src/diskmno.cpp
+        src/diskmallo.cpp
         src/main.cpp
         include/simplestack
-        include/diskmno
-        include/diskmallo
+        include/diskmno.h
+        include/diskmallo.h
 
 )
 

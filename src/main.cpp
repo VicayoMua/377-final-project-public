@@ -1,4 +1,4 @@
-#include "diskmallo"
+#include "diskmallo.h"
 #include <iostream>
 
 int main() {
