@@ -12,6 +12,9 @@ add_executable(
         include/diskmno
         include/diskmallo
 
+        include/my_malloc.h
+        src/my_malloc.cpp
+
 )
 
 find_package(Threads REQUIRED)
