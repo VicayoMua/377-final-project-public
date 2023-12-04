@@ -4,12 +4,12 @@
 int main() {
 
 
-    DiskVirtualMemoryManager *dvmm = new DiskVirtualMemoryManager("mem_files");
+    DiskVirtualMemoryManager *dvmm = new DiskVirtualMemoryManager("./mem_files");
 
     DiskMemory dm = dvmm->calloc(1024, sizeof(char));
 
     if (dm.pointer() != NULL) {
-        ::sprintf((char *) dm.pointer(), "Hellow World. ");
+        ::sprintf((char *) dm.pointer(), "Hello World. ");
     }else{
         ::printf("NULL pointer");
     }
