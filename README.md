@@ -17,7 +17,7 @@ To run the program normally, we have provided an executable named DiskVirtualMem
 
 To run the executable, simply open up the terminal. The first step is to compile the code using the following command:
 
-> Make
+> make
 
 The next step is to run the executable using the following command:
 
