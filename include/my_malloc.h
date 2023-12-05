@@ -2,6 +2,7 @@
 #define __MY_MALLOC_H
 
 #include <stdlib.h>
+#include <semaphore.h>
 
 // Some important constants.
 #define HEAP_SIZE 4096
@@ -9,37 +10,64 @@
 
 // This struct is used as the header of an allocated block.
 typedef struct __header_t {
-    size_t size;  // the number of bytes of allocated memory
-    unsigned int magic;  // the magic number used to identify a valid allocated block
+  size_t size;  // the number of bytes of allocated memory
+  unsigned int
+      magic;  // the magic number used to identify a valid allocated block
 } header_t;
 
 // This struct is used for the free list.
 typedef struct __node_t {
-    size_t size;            // the number of bytes available in this free block
-    struct __node_t *next;  // a pointer to the next free list node
+  size_t size;            // the number of bytes available in this free block
+  struct __node_t *next;  // a pointer to the next free list node
 } node_t;
 
-// This is the primary interface.
-void *my_malloc(size_t);
 
-void my_free(void *);
+class PageManager {
+  private:
+    // Semaphor to keep the class thread safe
+    sem_t pg_sem;
+    // A pointer to the head of the free list.
+    node_t *head;
 
-// We expose these functions for testing purposes.
-void reset_heap();
+  public:
+    // Constructor
+    PageManager();
 
-size_t available_memory();
+    // Deconstructor
+    ~PageManager();
 
-int number_of_free_nodes();
+    // Returns head pointer to the free list or uses mmap to allocate a page of memory from the OS and initialize the first free node.
+    node_t *heap();
 
-void print_free_list();
+    // Reallocates the heap.
+    void reset_heap();
 
-void find_free(size_t size, node_t **found, node_t **previous);
+    // Returns a pointer to the head of the free list.
+    node_t *free_list();
 
-void split(size_t size, node_t **previous, node_t **free_block,
-           header_t **allocated);
+    // Calculates the amount of free memory available in the heap.
+    size_t available_memory();
 
-void coalesce(node_t *free_block);
+    // Returns the number of nodes on the free list.
+    int number_of_free_nodes();
 
-node_t *heap();
+    // Prints the free list. Useful for debugging purposes.
+    void print_free_list();
+
+    // Finds a node on the free list that has enough available memory to allocate to a calling program.
+    void find_free(size_t size, node_t **found, node_t **previous);
+
+    // Splits a found free node to accommodate an allocation request.
+    void split(size_t size, node_t **previous, node_t **free_block, header_t **allocated);
+
+    // Returns a pointer to a region of memory having at least the request `size` bytes.
+    void *my_malloc(size_t size);
+
+    // Merges adjacent nodes on the free list to reduce external fragmentation.
+    void coalesce(node_t *free_block);
+
+    // Frees a given region of memory back to the free list.
+    void my_free(void *allocated);
+};
 
 #endif
