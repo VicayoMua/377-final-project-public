@@ -1,5 +1,5 @@
 #include "diskmallo"
-#include <iostream>
+#include <fstream>
 
 int main() {
 
@@ -10,7 +10,7 @@ int main() {
 
     if (dm.pointer() != NULL) {
         ::sprintf((char *) dm.pointer(), "Hello World. ");
-    }else{
+    } else {
         ::printf("NULL pointer");
     }
 
@@ -20,6 +20,12 @@ int main() {
 
     delete dvmm;
 
+
+    std::fstream fs("./mem_files/mem_0");
+    fs.seekg(std::ios::beg);
+    char charr[100];
+    fs.get(charr, 100);
+    std::cout << charr << std::endl;
     return 0;
 
 

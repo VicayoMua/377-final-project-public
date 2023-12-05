@@ -41,13 +41,6 @@ private:
     char *folder_path_global;
     size_t folder_path_global_length;
 
-//    /*
-//     * folder_global is thread safe because of being constant.
-//     * maintained by:
-//     *      constructor, deconstructor
-//     * */
-//    DIR *folder_global;
-
     /*
      * free_mem_file_id_stack is thread dangerous and should be protected by a binary semaphore.
      * maintained by:
@@ -171,7 +164,6 @@ DiskVirtualMemoryManager::DiskVirtualMemoryManager(const char *folder_path) {
     }
     this->folder_path_global_length = ::strlen(folder_path);
     this->folder_path_global = ::strdup(folder_path);
-//    this->folder_global = folder;
     ::closedir(folder);
     this->free_mem_file_id_stack = new SimpleStack<unsigned long>;
     ::sem_init(&this->free_mem_file_id_stack_sem, 0, 1);
@@ -222,7 +214,6 @@ DiskVirtualMemoryManager::~DiskVirtualMemoryManager() {
     delete this->ptr_to_fd_id_size_map;
     ::sem_post(&this->ptr_to_fd_id_size_map_sem);
     ::sem_destroy(&this->ptr_to_fd_id_size_map_sem);
-//    ::closedir(this->folder_global);
 }
 
 size_t DiskVirtualMemoryManager::checkDiskFolderCapacity() {
@@ -236,8 +227,10 @@ size_t DiskVirtualMemoryManager::checkDiskFolderCapacity() {
 }
 
 DiskMemory DiskVirtualMemoryManager::malloc(size_t size) {
-    if (size <= 0 || this->checkDiskFolderCapacity() < size)
+    if (size <= 0 || this->checkDiskFolderCapacity() < size) {
+        ::perror("DiskVirtualMemoryManager.malloc: The disk doesn't have enough space left! \n");
         return {nullptr, 0};
+    }
     // get mem_file_id
     unsigned long mem_file_id;
     ::sem_wait(&this->free_mem_file_id_stack_sem);
@@ -260,23 +253,29 @@ DiskMemory DiskVirtualMemoryManager::malloc(size_t size) {
     int fd = ::open(mem_file_path, O_RDWR | O_CREAT | O_TRUNC, 0777);
     if (fd == -1) {
         ::free(mem_file_path);
+        ::perror("DiskVirtualMemoryManager.malloc: Failed to create the virtual memory file! \n");
         return {nullptr, 0};
     }
 //    ::free(mem_file_path); this line can be deleted: this free is moved to freer.
     // test whether the created file can take enough space
     if (::lseek(fd, (off_t) size - 1, SEEK_SET) == -1 || ::write(fd, "", 1) != 1 || ::lseek(fd, 0, SEEK_SET) == -1) {
         ::close(fd);
+        ::perror("DiskVirtualMemoryManager.malloc: Failed to read/write to the created virtual memory file! \n");
         return {nullptr, 0};
     }
     // create the mapping
     void *ptr = ::mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_PRIVATE, fd, 0);
     if (ptr == MAP_FAILED) {
         ::close(fd);
+        ::perror(
+                "DiskVirtualMemoryManager.malloc: Failed to mmap the virtual memory file to the process's private virtual memory space! \n");
         return {nullptr, 0};
     }
     if (::msync(ptr, size, MS_SYNC) == -1) {
         ::munmap(ptr, size); // no matter this succeeds or fails for reason...
         ::close(fd);
+        ::perror(
+                "DiskVirtualMemoryManager.malloc: Failed to synchronize the virtual memory content into the disk file! \n");
         return {nullptr, 0};
     }
     ::sem_wait(&this->ptr_to_fd_id_size_map_sem);
@@ -302,6 +301,7 @@ unsigned char DiskVirtualMemoryManager::free(DiskMemory &&dmem, bool if_delete_m
     auto t = this->ptr_to_fd_id_size_map->find((unsigned long) ptr);
     if (t == this->ptr_to_fd_id_size_map->end()) {
         ::sem_post(&this->ptr_to_fd_id_size_map_sem);
+        ::perror("DiskVirtualMemoryManager.free: The given DiskMemory object is not valid! \n");
         return 0;
     }
     struct map_info_fd_id_size_fpath info = t->second;
@@ -309,13 +309,14 @@ unsigned char DiskVirtualMemoryManager::free(DiskMemory &&dmem, bool if_delete_m
     ::sem_post(&this->ptr_to_fd_id_size_map_sem);
     // close mmap
     if (::msync(ptr, info.size, MS_SYNC) == -1 || ::munmap(ptr, info.size) == -1) {
+        ::perror(
+                "DiskVirtualMemoryManager.free: Failed to synchronize the virtual memory content into the disk file or close the mapping! \n");
         return 2;
     }
     // close file descriptor
     ::close(info.fd);
-    if (if_delete_memory_file) {
+    if (if_delete_memory_file)
         ::remove(info.fpath); // ignore if remove() succeeded or not
-    }
     ::free(info.fpath);
     // record free id
     ::sem_wait(&this->free_mem_file_id_stack_sem);
@@ -331,6 +332,7 @@ unsigned char DiskVirtualMemoryManager::free(DiskMemory &dmem, bool if_delete_me
     auto t = this->ptr_to_fd_id_size_map->find((unsigned long) ptr);
     if (t == this->ptr_to_fd_id_size_map->end()) {
         ::sem_post(&this->ptr_to_fd_id_size_map_sem);
+        ::perror("DiskVirtualMemoryManager.free: The given DiskMemory object is not valid! \n");
         return 0;
     }
     struct map_info_fd_id_size_fpath info = t->second;
@@ -338,13 +340,14 @@ unsigned char DiskVirtualMemoryManager::free(DiskMemory &dmem, bool if_delete_me
     ::sem_post(&this->ptr_to_fd_id_size_map_sem);
     // close mmap
     if (::msync(ptr, info.size, MS_SYNC) == -1 || ::munmap(ptr, info.size) == -1) {
+        ::perror(
+                "DiskVirtualMemoryManager.free: Failed to synchronize the virtual memory content into the disk file or close the mapping! \n");
         return 2;
     }
     // close file descriptor
     ::close(info.fd);
-    if (if_delete_memory_file) {
+    if (if_delete_memory_file)
         ::remove(info.fpath); // ignore if remove() succeeded or not
-    }
     ::free(info.fpath);
     // record free id
     ::sem_wait(&this->free_mem_file_id_stack_sem);
