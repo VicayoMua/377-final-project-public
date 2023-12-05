@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/nfs/elsrv4/users1/grad/bltran/cs377/377-final-project-public/src/diskmallo.cpp" "CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmallo.cpp.o" "gcc" "CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmallo.cpp.o.d"
   "/nfs/elsrv4/users1/grad/bltran/cs377/377-final-project-public/src/diskmno.cpp" "CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmno.cpp.o" "gcc" "CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmno.cpp.o.d"
   "/nfs/elsrv4/users1/grad/bltran/cs377/377-final-project-public/src/main.cpp" "CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.o" "gcc" "CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.o.d"
+  "/nfs/elsrv4/users1/grad/bltran/cs377/377-final-project-public/src/my_malloc.cpp" "CMakeFiles/DiskVirtualMemoryManager.dir/src/my_malloc.cpp.o" "gcc" "CMakeFiles/DiskVirtualMemoryManager.dir/src/my_malloc.cpp.o.d"
   )
 
 # Targets to which this target links.

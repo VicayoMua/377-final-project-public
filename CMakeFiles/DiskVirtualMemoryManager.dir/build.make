@@ -69,10 +69,24 @@ include CMakeFiles/DiskVirtualMemoryManager.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/DiskVirtualMemoryManager.dir/flags.make
 
+CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.o: CMakeFiles/DiskVirtualMemoryManager.dir/flags.make
+CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.o: src/main.cpp
+CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.o: CMakeFiles/DiskVirtualMemoryManager.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/elsrv4/users1/grad/bltran/cs377/377-final-project-public/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.o"
+	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.o -MF CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.o.d -o CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.o -c /nfs/elsrv4/users1/grad/bltran/cs377/377-final-project-public/src/main.cpp
+
+CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.i"
+	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /nfs/elsrv4/users1/grad/bltran/cs377/377-final-project-public/src/main.cpp > CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.i
+
+CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.s"
+	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /nfs/elsrv4/users1/grad/bltran/cs377/377-final-project-public/src/main.cpp -o CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.s
+
 CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmno.cpp.o: CMakeFiles/DiskVirtualMemoryManager.dir/flags.make
 CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmno.cpp.o: src/diskmno.cpp
 CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmno.cpp.o: CMakeFiles/DiskVirtualMemoryManager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/elsrv4/users1/grad/bltran/cs377/377-final-project-public/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmno.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/elsrv4/users1/grad/bltran/cs377/377-final-project-public/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmno.cpp.o"
 	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmno.cpp.o -MF CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmno.cpp.o.d -o CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmno.cpp.o -c /nfs/elsrv4/users1/grad/bltran/cs377/377-final-project-public/src/diskmno.cpp
 
 CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmno.cpp.i: cmake_force
@@ -86,7 +100,7 @@ CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmno.cpp.s: cmake_force
 CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmallo.cpp.o: CMakeFiles/DiskVirtualMemoryManager.dir/flags.make
 CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmallo.cpp.o: src/diskmallo.cpp
 CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmallo.cpp.o: CMakeFiles/DiskVirtualMemoryManager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/elsrv4/users1/grad/bltran/cs377/377-final-project-public/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmallo.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/elsrv4/users1/grad/bltran/cs377/377-final-project-public/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmallo.cpp.o"
 	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmallo.cpp.o -MF CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmallo.cpp.o.d -o CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmallo.cpp.o -c /nfs/elsrv4/users1/grad/bltran/cs377/377-final-project-public/src/diskmallo.cpp
 
 CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmallo.cpp.i: cmake_force
@@ -97,35 +111,37 @@ CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmallo.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmallo.cpp.s"
 	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /nfs/elsrv4/users1/grad/bltran/cs377/377-final-project-public/src/diskmallo.cpp -o CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmallo.cpp.s
 
-CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.o: CMakeFiles/DiskVirtualMemoryManager.dir/flags.make
-CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.o: src/main.cpp
-CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.o: CMakeFiles/DiskVirtualMemoryManager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/elsrv4/users1/grad/bltran/cs377/377-final-project-public/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.o"
-	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.o -MF CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.o.d -o CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.o -c /nfs/elsrv4/users1/grad/bltran/cs377/377-final-project-public/src/main.cpp
+CMakeFiles/DiskVirtualMemoryManager.dir/src/my_malloc.cpp.o: CMakeFiles/DiskVirtualMemoryManager.dir/flags.make
+CMakeFiles/DiskVirtualMemoryManager.dir/src/my_malloc.cpp.o: src/my_malloc.cpp
+CMakeFiles/DiskVirtualMemoryManager.dir/src/my_malloc.cpp.o: CMakeFiles/DiskVirtualMemoryManager.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/elsrv4/users1/grad/bltran/cs377/377-final-project-public/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/DiskVirtualMemoryManager.dir/src/my_malloc.cpp.o"
+	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DiskVirtualMemoryManager.dir/src/my_malloc.cpp.o -MF CMakeFiles/DiskVirtualMemoryManager.dir/src/my_malloc.cpp.o.d -o CMakeFiles/DiskVirtualMemoryManager.dir/src/my_malloc.cpp.o -c /nfs/elsrv4/users1/grad/bltran/cs377/377-final-project-public/src/my_malloc.cpp
 
-CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.i"
-	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /nfs/elsrv4/users1/grad/bltran/cs377/377-final-project-public/src/main.cpp > CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.i
+CMakeFiles/DiskVirtualMemoryManager.dir/src/my_malloc.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DiskVirtualMemoryManager.dir/src/my_malloc.cpp.i"
+	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /nfs/elsrv4/users1/grad/bltran/cs377/377-final-project-public/src/my_malloc.cpp > CMakeFiles/DiskVirtualMemoryManager.dir/src/my_malloc.cpp.i
 
-CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.s"
-	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /nfs/elsrv4/users1/grad/bltran/cs377/377-final-project-public/src/main.cpp -o CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.s
+CMakeFiles/DiskVirtualMemoryManager.dir/src/my_malloc.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DiskVirtualMemoryManager.dir/src/my_malloc.cpp.s"
+	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /nfs/elsrv4/users1/grad/bltran/cs377/377-final-project-public/src/my_malloc.cpp -o CMakeFiles/DiskVirtualMemoryManager.dir/src/my_malloc.cpp.s
 
 # Object files for target DiskVirtualMemoryManager
 DiskVirtualMemoryManager_OBJECTS = \
+"CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.o" \
 "CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmno.cpp.o" \
 "CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmallo.cpp.o" \
-"CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.o"
+"CMakeFiles/DiskVirtualMemoryManager.dir/src/my_malloc.cpp.o"
 
 # External object files for target DiskVirtualMemoryManager
 DiskVirtualMemoryManager_EXTERNAL_OBJECTS =
 
+DiskVirtualMemoryManager: CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.o
 DiskVirtualMemoryManager: CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmno.cpp.o
 DiskVirtualMemoryManager: CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmallo.cpp.o
-DiskVirtualMemoryManager: CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.o
+DiskVirtualMemoryManager: CMakeFiles/DiskVirtualMemoryManager.dir/src/my_malloc.cpp.o
 DiskVirtualMemoryManager: CMakeFiles/DiskVirtualMemoryManager.dir/build.make
 DiskVirtualMemoryManager: CMakeFiles/DiskVirtualMemoryManager.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/nfs/elsrv4/users1/grad/bltran/cs377/377-final-project-public/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable DiskVirtualMemoryManager"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/nfs/elsrv4/users1/grad/bltran/cs377/377-final-project-public/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable DiskVirtualMemoryManager"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/DiskVirtualMemoryManager.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

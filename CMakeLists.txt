@@ -7,14 +7,18 @@ include_directories(include)
 
 add_executable(
         DiskVirtualMemoryManager
+        src/main.cpp
         src/diskmno.cpp
         src/diskmallo.cpp
-        src/main.cpp
-        include/simplestack
-        include/diskmno.h
-        include/diskmallo.h
-
+        src/my_malloc.cpp
 )
 
 find_package(Threads REQUIRED)
 target_link_libraries(DiskVirtualMemoryManager Threads::Threads)
+
+add_executable(
+        MallocTest
+        src/my_malloc.cpp
+        tests/test.cpp
+)
+target_link_libraries(MallocTest gtest gtest_main pthread)

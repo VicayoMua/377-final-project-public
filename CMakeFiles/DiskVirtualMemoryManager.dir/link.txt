@@ -1,1 +1,1 @@
-/bin/c++ CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmno.cpp.o CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmallo.cpp.o CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.o -o DiskVirtualMemoryManager 
+/bin/c++ CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.o CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmno.cpp.o CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmallo.cpp.o CMakeFiles/DiskVirtualMemoryManager.dir/src/my_malloc.cpp.o -o DiskVirtualMemoryManager 

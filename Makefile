@@ -129,6 +129,19 @@ DiskVirtualMemoryManager/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DiskVirtualMemoryManager.dir/build.make CMakeFiles/DiskVirtualMemoryManager.dir/build
 .PHONY : DiskVirtualMemoryManager/fast
 
+#=============================================================================
+# Target rules for targets named MallocTest
+
+# Build rule for target.
+MallocTest: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 MallocTest
+.PHONY : MallocTest
+
+# fast build rule for target.
+MallocTest/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MallocTest.dir/build.make CMakeFiles/MallocTest.dir/build
+.PHONY : MallocTest/fast
+
 src/diskmallo.o: src/diskmallo.cpp.o
 .PHONY : src/diskmallo.o
 
@@ -201,6 +214,57 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DiskVirtualMemoryManager.dir/build.make CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/my_malloc.o: src/my_malloc.cpp.o
+.PHONY : src/my_malloc.o
+
+# target to build an object file
+src/my_malloc.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DiskVirtualMemoryManager.dir/build.make CMakeFiles/DiskVirtualMemoryManager.dir/src/my_malloc.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MallocTest.dir/build.make CMakeFiles/MallocTest.dir/src/my_malloc.cpp.o
+.PHONY : src/my_malloc.cpp.o
+
+src/my_malloc.i: src/my_malloc.cpp.i
+.PHONY : src/my_malloc.i
+
+# target to preprocess a source file
+src/my_malloc.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DiskVirtualMemoryManager.dir/build.make CMakeFiles/DiskVirtualMemoryManager.dir/src/my_malloc.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MallocTest.dir/build.make CMakeFiles/MallocTest.dir/src/my_malloc.cpp.i
+.PHONY : src/my_malloc.cpp.i
+
+src/my_malloc.s: src/my_malloc.cpp.s
+.PHONY : src/my_malloc.s
+
+# target to generate assembly for a file
+src/my_malloc.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DiskVirtualMemoryManager.dir/build.make CMakeFiles/DiskVirtualMemoryManager.dir/src/my_malloc.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MallocTest.dir/build.make CMakeFiles/MallocTest.dir/src/my_malloc.cpp.s
+.PHONY : src/my_malloc.cpp.s
+
+tests/test.o: tests/test.cpp.o
+.PHONY : tests/test.o
+
+# target to build an object file
+tests/test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MallocTest.dir/build.make CMakeFiles/MallocTest.dir/tests/test.cpp.o
+.PHONY : tests/test.cpp.o
+
+tests/test.i: tests/test.cpp.i
+.PHONY : tests/test.i
+
+# target to preprocess a source file
+tests/test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MallocTest.dir/build.make CMakeFiles/MallocTest.dir/tests/test.cpp.i
+.PHONY : tests/test.cpp.i
+
+tests/test.s: tests/test.cpp.s
+.PHONY : tests/test.s
+
+# target to generate assembly for a file
+tests/test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MallocTest.dir/build.make CMakeFiles/MallocTest.dir/tests/test.cpp.s
+.PHONY : tests/test.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -210,6 +274,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... DiskVirtualMemoryManager"
+	@echo "... MallocTest"
 	@echo "... src/diskmallo.o"
 	@echo "... src/diskmallo.i"
 	@echo "... src/diskmallo.s"
@@ -219,6 +284,12 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/my_malloc.o"
+	@echo "... src/my_malloc.i"
+	@echo "... src/my_malloc.s"
+	@echo "... tests/test.o"
+	@echo "... tests/test.i"
+	@echo "... tests/test.s"
 .PHONY : help
 
 

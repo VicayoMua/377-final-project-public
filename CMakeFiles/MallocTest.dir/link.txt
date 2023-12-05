@@ -1,0 +1,1 @@
+/bin/c++ CMakeFiles/MallocTest.dir/src/my_malloc.cpp.o CMakeFiles/MallocTest.dir/tests/test.cpp.o -o MallocTest  -lgtest -lgtest_main -lpthread 

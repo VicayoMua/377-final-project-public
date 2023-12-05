@@ -7,6 +7,7 @@
 
 // CPP headers
 #include "stdexcept"
+#include "diskmallo.h"
 
 /*
  * SimpleStack is thread dangerous without protections of any mutual exclusion.
@@ -112,5 +113,4 @@ T SimpleStack<T>::pop() {
     delete temp;
     return topValue;
 }
-
 #endif //VIRTUALMEMORYMANAGER_SIMPLESTACK_H

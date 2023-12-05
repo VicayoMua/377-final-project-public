@@ -24,8 +24,9 @@
 #include "iostream"
 
 // My CPP Headers
-#include "simplestack"
 #include "diskmno.h"
+#include "simplestack.h"
+#include "my_malloc.h"
 
 /*
  * DiskVirtualMemoryManager is thread safe with sufficient mutual exclusion protections.

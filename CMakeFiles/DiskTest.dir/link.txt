@@ -1,0 +1,1 @@
+/bin/c++ CMakeFiles/DiskTest.dir/src/diskmno.cpp.o CMakeFiles/DiskTest.dir/src/diskmallo.cpp.o CMakeFiles/DiskTest.dir/tests/main.cpp.o -o DiskTest 

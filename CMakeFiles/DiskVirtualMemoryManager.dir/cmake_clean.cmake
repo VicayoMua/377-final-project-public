@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/DiskVirtualMemoryManager.dir/src/diskmno.cpp.o.d"
   "CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.o"
   "CMakeFiles/DiskVirtualMemoryManager.dir/src/main.cpp.o.d"
+  "CMakeFiles/DiskVirtualMemoryManager.dir/src/my_malloc.cpp.o"
+  "CMakeFiles/DiskVirtualMemoryManager.dir/src/my_malloc.cpp.o.d"
   "DiskVirtualMemoryManager"
   "DiskVirtualMemoryManager.pdb"
 )
