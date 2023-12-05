@@ -178,7 +178,8 @@ void *DiskVirtualMemoryManager::deconstructor_helper(void *_param) {
     ::msync(param->ptr, param->size, MS_SYNC);
     ::munmap(param->ptr, param->size);
     ::close(param->fd);
-    ::remove(param->fpath);
+    if (::remove(param->fpath) == -1)
+        ::perror("DiskVirtualMemoryManager.~DiskVirtualMemoryManager: Failed to delete the virtual memory file! \n");
     ::free(param->fpath);
     ::free(param);
     pthread_exit(NULL);
@@ -264,7 +265,8 @@ DiskMemory DiskVirtualMemoryManager::malloc(size_t size) {
         return {nullptr, 0};
     }
     // create the mapping
-    void *ptr = ::mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_PRIVATE, fd, 0);
+    void *ptr = ::mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+    // MAP_SHARED must be used here to make virtual memory files readable by other processes even after freed!
     if (ptr == MAP_FAILED) {
         ::close(fd);
         ::perror(
@@ -316,7 +318,9 @@ unsigned char DiskVirtualMemoryManager::free(DiskMemory &&dmem, bool if_delete_m
     // close file descriptor
     ::close(info.fd);
     if (if_delete_memory_file)
-        ::remove(info.fpath); // ignore if remove() succeeded or not
+        if (::remove(info.fpath) == -1) // nothing to handle when remove() fails
+            ::perror(
+                    "DiskVirtualMemoryManager.free: Failed to delete the virtual memory file! \n");
     ::free(info.fpath);
     // record free id
     ::sem_wait(&this->free_mem_file_id_stack_sem);
@@ -347,7 +351,9 @@ unsigned char DiskVirtualMemoryManager::free(DiskMemory &dmem, bool if_delete_me
     // close file descriptor
     ::close(info.fd);
     if (if_delete_memory_file)
-        ::remove(info.fpath); // ignore if remove() succeeded or not
+        if (::remove(info.fpath) == -1) // nothing to handle when remove() fails
+            ::perror(
+                    "DiskVirtualMemoryManager.free: Failed to delete the virtual memory file! \n");
     ::free(info.fpath);
     // record free id
     ::sem_wait(&this->free_mem_file_id_stack_sem);

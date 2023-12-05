@@ -64,11 +64,17 @@ size_t DiskMemory::size() {
 }
 
 bool DiskMemory::syncToDisk(bool if_wait_for_completion) {
-    return (
-            (if_wait_for_completion ?
-             ::msync(this->_void_p, this->_size, MS_SYNC) :
-             ::msync(this->_void_p, this->_size, MS_ASYNC)) != -1
-    );
+//    return (
+//            (if_wait_for_completion ?
+//             ::msync(this->_void_p, this->_size, MS_SYNC) :
+//             ::msync(this->_void_p, this->_size, MS_ASYNC)) != -1
+//    );
+    if (::msync(this->_void_p, this->_size, (if_wait_for_completion ? MS_SYNC : MS_ASYNC)) == -1) {
+        ::perror("DiskMemory.syncToDisk: Failed to synchronize the virtual memory file content onto the disk! \n");
+        return false;
+    }
+    return true;
+
 }
 
 #endif //VIRTUALMEMORYMANAGER_DISKMNO_H

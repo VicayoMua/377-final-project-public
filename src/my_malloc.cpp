@@ -118,18 +118,6 @@ void split(size_t size, node_t **previous, node_t **free_block, header_t **alloc
     // TODO
     if (!previous || !free_block || !allocated)
         return;
-    // assert(*free_block != NULL);
-    // *allocated = (header_t *) (*free_block);
-    // *free_block = (node_t *) ((char *) (*free_block) + (size + sizeof(header_t)));
-    // (*free_block)->next = ((node_t *) (*allocated))->next;
-    // (*free_block)->size = ((node_t *) (*allocated))->size - (size + sizeof(header_t));
-    // (*allocated)->size = size;
-    // (*allocated)->magic = MAGIC;
-    // if (*previous) {
-    //     (*previous)->next = *free_block;
-    // } else {
-    //     head = *free_block;
-    // }
    if ((*free_block)->size >= size + sizeof(header_t)) {
        node_t *nn = (node_t *) ((char *) (*free_block) + sizeof(header_t) + size);
        size_t oldsize = (*free_block)->size;
