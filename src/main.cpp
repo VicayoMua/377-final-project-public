@@ -11,7 +11,7 @@ int main() {
 
     PageManager *pm = new PageManager(dm.pointer(), dm.size());
 
-    pm->allocatePage(64, (char *) "Hello World..! 2333");
+    pm->allocatePage(64, (char *) "Hello World..!");
 
     delete pm;
 
