@@ -11,9 +11,7 @@ add_executable(
         include/simplestack
         include/diskmno
         include/diskmallo
-
-        include/my_malloc.h
-        src/my_malloc.cpp
+        include/PageManager_ExtendedProj5
 
 )
 
