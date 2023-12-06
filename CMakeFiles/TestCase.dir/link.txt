@@ -1,0 +1,1 @@
+/bin/c++ CMakeFiles/TestCase.dir/tests/test.cpp.o -o TestCase  -lgtest -lgtest_main -lpthread 

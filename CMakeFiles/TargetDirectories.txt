@@ -1,0 +1,4 @@
+/nfs/elsrv4/users1/grad/bltran/cs377/377-final-project-public/CMakeFiles/DiskVirtualMemoryManager.dir
+/nfs/elsrv4/users1/grad/bltran/cs377/377-final-project-public/CMakeFiles/TestCase.dir
+/nfs/elsrv4/users1/grad/bltran/cs377/377-final-project-public/CMakeFiles/edit_cache.dir
+/nfs/elsrv4/users1/grad/bltran/cs377/377-final-project-public/CMakeFiles/rebuild_cache.dir

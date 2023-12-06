@@ -8,12 +8,15 @@ include_directories(include)
 add_executable(
         DiskVirtualMemoryManager
         src/main.cpp
-        include/simplestack
-        include/diskmno
-        include/diskmallo
-        include/PageManager_ExtendedProj5
 
 )
 
 find_package(Threads REQUIRED)
 target_link_libraries(DiskVirtualMemoryManager Threads::Threads)
+
+add_executable(
+        TestCase
+        tests/test.cpp
+)
+
+target_link_libraries(TestCase gtest gtest_main pthread)
