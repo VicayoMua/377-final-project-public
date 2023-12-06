@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <my_malloc.h>
 #include <sys/mman.h>
+#include "diskmallo.h"
 
 // Definitions to simplify semaphore operations
 #define ts_lock sem_wait(&this->pg_sem)
@@ -34,12 +35,12 @@ PageManager::~PageManager() {
 }
 
 // The heap function returns the head pointer to the free list. If the heap
-node_t* PageManager::heap(char* address = NULL) { 
+node_t* PageManager::heap(char* address = NULL, int size = HEAP_SIZE) { 
   ts_lock;
   if (head == NULL) {
     // This allocates the heap and initializes the head node.
     head = (node_t *) mmap(address, HEAP_SIZE, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0);
-    head->size = HEAP_SIZE - sizeof(node_t);
+    head->size = size - sizeof(node_t);
     head->next = NULL;
   }
   ts_unlock;
@@ -106,6 +107,7 @@ void PageManager::print_free_list() {
 
 // Finds a node on the free list that has enough available memory to allocate to a calling program.
 void PageManager::find_free(size_t size, node_t **found, node_t **previous) {
+  // TODO: update function so it can locate other page if the heap is full
   ts_lock;
   if (!found || !previous) {ts_unlock; return; }
   *found = NULL;
@@ -159,7 +161,7 @@ void PageManager::split(size_t size, node_t **previous, node_t **free_block, hea
 }
 
 // Returns a pointer to a region of memory having at least the request `size` bytes.
-void* PageManager::my_malloc(size_t size) {
+void* PageManager::my_malloc(size_t size, char* data) {
   ts_lock;
   node_t *prev = NULL, *found = NULL;
   ts_unlock;
@@ -169,7 +171,9 @@ void* PageManager::my_malloc(size_t size) {
   header_t *alloc = NULL;
   ts_unlock;
   this->split(size, &prev, &found, &alloc);
-  return (char *) (alloc) + sizeof(header_t);
+  char* data_address = (char *) (alloc) + sizeof(header_t);
+  memcpy(data_address, data, sizeof(&data));
+  return data_address;
 }
 
 // Merges adjacent nodes on the free list to reduce external fragmentation.

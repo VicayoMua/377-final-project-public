@@ -37,7 +37,7 @@ class PageManager {
     ~PageManager();
 
     // Returns head pointer to the free list or uses mmap to allocate a page of memory from the OS and initialize the first free node to parsed address.
-    node_t *heap(char* address);
+    node_t *heap(char* address, int size);
 
     // Reallocates the heap.
     void reset_heap();
@@ -61,7 +61,7 @@ class PageManager {
     void split(size_t size, node_t **previous, node_t **free_block, header_t **allocated);
 
     // Returns a pointer to a region of memory having at least the request `size` bytes.
-    void *my_malloc(size_t size);
+    void *my_malloc(size_t size, char* data);
 
     // Merges adjacent nodes on the free list to reduce external fragmentation.
     void coalesce(node_t *free_block);

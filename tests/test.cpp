@@ -2,8 +2,9 @@
 #include <my_malloc.h>
 
 PageManager* pManager = NULL;
+char data[10] = "Hello";
 
-node_t *heap() { return pManager->heap(NULL); }
+node_t *heap() { return pManager->heap(NULL, HEAP_SIZE); }
 
 // Reallocates the heap.
 void reset_heap() { return pManager->reset_heap(); }
@@ -27,7 +28,7 @@ void find_free(size_t size, node_t **found, node_t **previous) { return pManager
 void split(size_t size, node_t **previous, node_t **free_block, header_t **allocated) { return pManager->split(size, previous, free_block, allocated); }
 
 // Returns a pointer to a region of memory having at least the request `size` bytes.
-void *my_malloc(size_t size) { return pManager->my_malloc(size); }
+void *my_malloc(size_t size) { return pManager->my_malloc(size, data); }
 
 // Merges adjacent nodes on the free list to reduce external fragmentation.
 #define h_physi_next_p ((char *) h + sizeof(node_t) + h->size)
